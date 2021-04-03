@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const db = require("./app/models");
+
 
 const app = express();
 
@@ -28,6 +28,7 @@ app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}.`);
 })
 
+const db = require("./app/models");
 const Role = db.rolle;
 
 db.mongoose
@@ -48,33 +49,33 @@ function initial() {
     Role.estimatedDocumentCount((err, count) => {
         if (!err && count === 0) {
             new Role({
-                name: "schüler"
+                name: "user"
             }).save(err => {
                 if (err) {
                     console.log("error", err);
                 }
 
-                console.log("added 'schüler' to roles collection");
+                console.log("added 'user' to roles collection");
             });
 
             new Role({
-                name: "lehrer"
+                name: "moderator"
             }).save(err => {
                 if (err) {
                     console.log("error", err);
                 }
 
-                console.log("added 'lehrer' to roles collection");
+                console.log("added 'moderator' to roles collection");
             });
 
             new Role({
-                name: "schulleitung"
+                name: "admin"
             }).save(err => {
                 if (err) {
                     console.log("error", err);
                 }
 
-                console.log("added 'schulleitung' to roles collection");
+                console.log("added 'admin' to roles collection");
             });
         }
     });

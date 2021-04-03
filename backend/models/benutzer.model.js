@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
-const Schüler = mongoose.model(
-    "Schüler",
+const Benutzer = mongoose.model(
+    "Benutzer",
     new mongoose.Schema({
         benutzername: String,
         password: String,
@@ -12,4 +12,4 @@ const Schüler = mongoose.model(
     })
 );
 
-module.exports = Schüler;
+module.exports = Benutzer;
