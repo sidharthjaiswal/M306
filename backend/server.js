@@ -1,8 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-
-
+const dbConfig = require('./config/db.config');
 const app = express();
 
 var corsOptions = {
@@ -23,8 +22,8 @@ app.get("/", (req, res) => {
 });
 
 // routes
-require('./app/routes/auth.routes')(app);
-require('./app/routes/user.routes')(app);
+require('./routes/auth.routes')(app);
+require('./routes/user.routes')(app);
 
 
 // set port, listen for requests
@@ -33,7 +32,7 @@ app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}.`);
 })
 
-const db = require("./app/models");
+const db = require("./models");
 const Role = db.rolle;
 
 db.mongoose
@@ -42,7 +41,7 @@ db.mongoose
         useUnifiedTopology: true
     })
     .then(() => {
-        console.log("Successfully connect to MongoDB.");
+        console.log("Successfully connected to MongoDB.");
         initial();
     })
     .catch(err => {
