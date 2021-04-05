@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const dbConfig = require("./config/db.config");
 
 const app = express();
 
@@ -16,23 +17,7 @@ app.use(bodyParser.json());
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// simple route
-app.get("/", (req, res) => {
-    res.json({ message: "Welcome to bezkoder application." });
-});
-
-//routes
-require('./app/routes/auth.routes')(app);
-require('./app/routes/user.routes')(app);
-
-// set port, listen for requests
-const PORT = process.env.PORT || 8080;
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}.`);
-});
-
-//db config 
-const db = require("./app/models");
+const db = require("./models");
 const Role = db.role;
 
 db.mongoose
@@ -49,7 +34,21 @@ db.mongoose
         process.exit();
     });
 
-//Roles config
+// simple route
+app.get("/", (req, res) => {
+    res.json({ message: "Willkommen zu Schülerdatenbank." });
+});
+
+// routes
+require("./routes/auth.routes")(app);
+require("./routes/user.routes")(app);
+
+// set port, listen for requests
+const PORT = process.env.PORT || 8080;
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}.`);
+});
+
 function initial() {
     Role.estimatedDocumentCount((err, count) => {
         if (!err && count === 0) {
