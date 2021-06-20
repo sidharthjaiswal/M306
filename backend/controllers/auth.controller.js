@@ -2,6 +2,7 @@ const config = require("../config/auth.config");
 const db = require("../models");
 const User = db.user;
 const Role = db.role;
+const ROLES = db.ROLES;
 
 var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
@@ -11,7 +12,33 @@ exports.signup = (req, res) => {
         username: req.body.username,
         password: bcrypt.hashSync(req.body.password, 8)
     });
+    console.log("signup: "+req.body.username);
+    console.log(req.body.password);
+    console.log(" checkDuplicateUsername: "+req.body.username);
+    User.findOne({
+        username: req.body.username
+    }).exec((err, user) => {
+        if (err) {
+            res.status(500).send({ message: err });
+            return;
+        }
 
+        if (user) {
+            res.status(400).send({ message: "Failed! Username is already in use!" });
+            return;
+        }
+
+    });
+    if (req.body.roles) {
+        for (let i = 0; i < req.body.roles.length; i++) {
+            if (!ROLES.includes(req.body.roles[i])) {
+                res.status(400).send({
+                    message: `Failed! Role ${req.body.roles[i]} does not exist!`
+                });
+                return;
+            }
+        }
+    }
     user.save((err, user) => {
         if (err) {
             res.status(500).send({ message: err });
@@ -103,4 +130,42 @@ exports.signin = (req, res) => {
                 accessToken: token
             });
         });
+};
+
+
+checkDuplicateUsername = (req, res, next) => {
+    // Username
+    console.log(" checkDuplicateUsername: "+req.body.username);
+    User.findOne({
+        username: req.body.username
+    }).exec((err, user) => {
+        if (err) {
+            res.status(500).send({ message: err });
+            return;
+        }
+
+        if (user) {
+            res.status(400).send({ message: "Failed! Username is already in use!" });
+            return;
+        }
+
+    });
+};
+
+
+
+checkRolesExisted = (req, res, next) => {
+    console.log("checkRolesExisted "+req.body.roles);
+    if (req.body.roles) {
+        for (let i = 0; i < req.body.roles.length; i++) {
+            if (!ROLES.includes(req.body.roles[i])) {
+                res.status(400).send({
+                    message: `Failed! Role ${req.body.roles[i]} does not exist!`
+                });
+                return;
+            }
+        }
+    }
+
+    //next();
 };

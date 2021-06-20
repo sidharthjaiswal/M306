@@ -1,15 +1,15 @@
 exports.allAccess = (req, res) => {
-    res.status(200).send("Public Content.");
+    res.status(200).send("Öffentlicher Inhalt.");
 };
 
 exports.userBoard = (req, res) => {
-    res.status(200).send("User Content.");
+    res.status(200).send("Schüler Inhalt.");
 };
 
 exports.adminBoard = (req, res) => {
-    res.status(200).send("Admin Content.");
+    res.status(200).send("Schulleitung Inhalt.");
 };
 
 exports.moderatorBoard = (req, res) => {
-    res.status(200).send("Moderator Content.");
+    res.status(200).send("Lehrer Inhalt.");
 };
