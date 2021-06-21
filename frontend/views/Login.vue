@@ -53,7 +53,6 @@
 
 <script>
 import User from '../models/user';
-
 export default {
   name: 'Login',
   data() {
@@ -81,7 +80,6 @@ export default {
           this.loading = false;
           return;
         }
-
         if (this.user.username && this.user.password) {
           this.$store.dispatch('auth/login', this.user).then(
             () => {
@@ -90,7 +88,7 @@ export default {
             error => {
               this.loading = false;
               this.message =
-                (error.response && error.response.data) ||
+                (error.response && error.response.data && error.response.data.message) ||
                 error.message ||
                 error.toString();
             }
@@ -107,12 +105,10 @@ label {
   display: block;
   margin-top: 10px;
 }
-
 .card-container.card {
   max-width: 350px !important;
   padding: 40px 40px;
 }
-
 .card {
   background-color: #f7f7f7;
   padding: 20px 25px 30px;
@@ -125,7 +121,6 @@ label {
   -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
 }
-
 .profile-img-card {
   width: 96px;
   height: 96px;
