@@ -1,5 +1,5 @@
 exports.allAccess = (req, res) => {
-    res.status(200).send("Öffentlicher Inhalt.");
+    res.status(200).send("Willkommen zu unserer Schülerdatenbank.");
 };
 
 exports.userBoard = (req, res) => {
