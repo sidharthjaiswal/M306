@@ -84,3 +84,10 @@ function initial() {
         }
     });
 }
+const studentAPI = require('./routes/stud.routes')
+
+// API
+app.use('/api', studentAPI)
+
+
+
