@@ -19,10 +19,10 @@
         </li>
       </div>
 
-      <div v-if="!currentUser" class="navbar-nav ml-auto">  
+      <div  class="navbar-nav ml-auto">  
         <li class="nav-item">
-          <router-link to="/register" class="nav-link">
-            <font-awesome-icon icon="user-plus" /> Sign Up
+          <router-link to="/register" class="nav-link" v-if="currentUser.roles.includes('ROLE_ADMIN')">
+            <font-awesome-icon icon="user-plus" /> Register
           </router-link>
         </li>
         <li class="nav-item">

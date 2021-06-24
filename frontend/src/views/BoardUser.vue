@@ -41,17 +41,12 @@
         </table>
       </div>
     </div>
-    <div>
+    <!--<div>
       Sorting By: <b>{{ sortBy }}</b
       >, Sort Direction:
       <b>{{ sortDesc ? "Descending" : "Ascending" }}</b>
-    </div>
-    <br />
-    <b-pagination
-      v-model="currentPage"
-      :total-rows="rows"
-      :per-page="perPage"
-    ></b-pagination>
+    </div> 
+    <br />-->
   </div>
 </template>
 
