@@ -1,7 +1,12 @@
+
 <template>
   <div class="overflow-auto">
     <div class="row">
       <div class="col-md-12">
+        <br>
+        <br>
+        <router-link to="/create" class="btn btn-success" v-if="currentUser.roles.includes('ROLE_MODERATOR') || currentUser.roles.includes('ROLE_ADMIN')">Create Student</router-link>
+        <br>
         <br>
         <table class="table table-striped">
           <thead class="thead-dark">
@@ -9,6 +14,8 @@
               <th>First name</th>
               <th>Last name</th>
               <th>Class</th>
+              <th v-if="currentUser.roles.includes('ROLE_MODERATOR')" >Actions</th>
+              <th v-if="currentUser.roles.includes('ROLE_ADMIN')" >Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -16,6 +23,19 @@
               <td>{{ student.firstName }}</td>
               <td>{{ student.lastName }}</td>
               <td>{{ student.class }}</td>
+              <td>
+                <router-link
+                  :to="{ name: 'edit', params: { id: student._id } }"
+                  class="btn btn-warning"
+                  >Edit
+                </router-link>
+                <button
+                  @click.prevent="deleteStudent(student._id)"
+                  class="btn btn-danger"
+                >
+                  Delete
+                </button>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -45,7 +65,18 @@ export default {
       perPage: 3,
       currentPage: 1,
       Students: [],
-    };
+  name: 'Profile',
+  computed: {
+    currentUser() {
+      return this.$store.state.auth.user;
+    }
+  },
+  mounted() {
+    if (!this.currentUser) {
+      this.$router.push('/login');
+    }
+  }
+};
   },
 
   created() {
@@ -61,7 +92,7 @@ export default {
   },
   methods: {
     deleteStudent(id) {
-      let apiURL = `http://localhost:4000/api/delete-student/${id}`;
+      let apiURL = `http://localhost:8080/api/delete-student/${id}`;
       let indexOfArrayItem = this.Students.findIndex((i) => i._id === id);
 
       if (window.confirm("Do you really want to delete?")) {
@@ -80,8 +111,11 @@ export default {
     rows() {
       return this.Students.length;
     },
-  },
+    currentUser() {
+      return this.$store.state.auth.user;
+  }},
 };
+
 </script>
 
 <style>
