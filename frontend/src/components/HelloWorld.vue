@@ -1,3 +1,16 @@
+<!--
+@Author: Automated Vue Template
+@version: 
+@Latest Update: 23.04.2021
+
+Descripton:  Just a Template file.
+
+*/
+-->
+
+
+
+
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
