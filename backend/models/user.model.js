@@ -1,5 +1,5 @@
 /*
-@Author: Siddharth Jaiswal 
+@Author: Sidharth Jaiswal 
 @version: 1.0v
 @Latest Update: 24.06.2021
 Status: Done

@@ -33,10 +33,11 @@ Descripton:  Student Record Management system. It efficiently allows users to pe
 
       <div  class="navbar-nav ml-auto">  
         <li class="nav-item">
-          <router-link to="/register" class="nav-link" v-if="currentUser.roles.includes('ROLE_ADMIN')">
+          <router-link to="/register" class="nav-link">
             <font-awesome-icon icon="user-plus" /> Register
           </router-link>
         </li>
+        <br>
         <li class="nav-item">
           <router-link to="/login" class="nav-link">
             <font-awesome-icon icon="sign-in-alt" /> Login
