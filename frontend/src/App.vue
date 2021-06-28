@@ -31,7 +31,7 @@ Descripton:  Student Record Management system. It efficiently allows users to pe
         </li>
       </div>
 
-      <div  class="navbar-nav ml-auto">  
+      <div v-if="!currentUser"  class="navbar-nav ml-auto">  
         <li class="nav-item">
           <router-link to="/register" class="nav-link">
             <font-awesome-icon icon="user-plus" /> Register
