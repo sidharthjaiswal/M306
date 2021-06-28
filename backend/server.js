@@ -98,9 +98,11 @@ function initial() {
     });
 }
 const studentAPI = require('./routes/stud.routes')
-
+const teacherAPI = require('./routes/lehr.routes')
 // API
-app.use('/api', studentAPI)
+app.use('/api', studentAPI),
+
+app.use('/api', teacherAPI)
 
 
 
