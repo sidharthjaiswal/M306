@@ -62,17 +62,29 @@ export const router = new Router({
       component: () => import('./views/BoardUser.vue')
     },
     {
-      path: '/edit',
-      name: 'edit',
+      path: '/edit-student',
+      name: 'edit-student',
 
-      component: () => import('./views/EditComponent.vue')
+      component: () => import('./views/EditStudentComponent.vue')
     },
     {
-      path: '/create',
-      name: 'create',
+      path: '/edit-teacher',
+      name: 'edit-teacher',
 
-      component: () => import('./views/CreateComponent.vue')
-    }
+      component: () => import('./views/EditTeacherComponent.vue')
+    },
+    {
+      path: '/create-student',
+      name: 'create-student',
+
+      component: () => import('./views/CreateStudentComponent.vue')
+    },
+    {
+      path: '/create-teacher',
+      name: 'create-teacher',
+
+      component: () => import('./views/CreateTeacherComponent.vue')
+    },
   ]
 });
 

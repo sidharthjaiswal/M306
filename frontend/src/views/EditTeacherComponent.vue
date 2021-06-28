@@ -1,10 +1,10 @@
 <!-- /*
-@Author: Saijivan Maheswaran
+@Author: Sidharth Jaiswal
 @version: 1.0v
 @Latest Update: 24.06.2021
 Status: Done
 
-Descripton:  Student Record Management system. It efficiently allows users to perform CRUD operations.
+Descripton:  School Record Management system. It efficiently allows users to perform CRUD operations.
              Schüler Datenbank Mangament system. Erlaubt den Nutzer effizient CRUD Operationen durchzuführen.
 
 */
@@ -15,14 +15,14 @@ Descripton:  Student Record Management system. It efficiently allows users to pe
   <div class="row justify-content-center">
     <div class="col-md-6">
         <br>
-      <h3 class="text-center">Add Student</h3>
-      <form @submit.prevent="handleSubmitForm">
-        <div class="form-group">
+      <h3 class="text-center">Update Teacher</h3>
+      <form @submit.prevent="handleUpdateForm">
+         <div class="form-group">
           <label>First Name</label>
           <input
             type="text"
             class="form-control"
-            v-model="student.firstName"
+            v-model="lehrer.firstName"
             required
           />
         </div>
@@ -32,7 +32,7 @@ Descripton:  Student Record Management system. It efficiently allows users to pe
           <input
             type="text"
             class="form-control"
-            v-model="student.lastName"
+            v-model="lehrer.lastName"
             required
           />
         </div>
@@ -42,13 +42,13 @@ Descripton:  Student Record Management system. It efficiently allows users to pe
           <input
             type="text"
             class="form-control"
-            v-model="student.class"
+            v-model="lehrer.class"
             required
           />
         </div>
 
         <div class="form-group">
-          <button class="btn btn-success btn-block">Add</button>
+          <button class="btn btn-success btn-block">Update</button>
         </div>
       </form>
     </div>
@@ -57,31 +57,29 @@ Descripton:  Student Record Management system. It efficiently allows users to pe
 
 <script>
 import axios from "axios";
+
 export default {
   data() {
     return {
-      student: {
-        firstName: "",
-        lastName: "",
-        email: "",
-        phone: "",
-        class: "",
-      },
+      lehrer: {},
     };
   },
+  created() {
+    let apiURL = `http://localhost:8080/api/edit-teacher/${this.$route.params.id}`;
+
+    axios.get(apiURL).then((res) => {
+      this.lehrer = res.data;
+    });
+  },
   methods: {
-    handleSubmitForm() {
-      let apiURL = "http://localhost:8080/api/create-student";
+    handleUpdateForm() {
+      let apiURL = `http://localhost:8080/api/update-teacher/${this.$route.params.id}`;
 
       axios
-        .post(apiURL, this.student)
-        .then(() => {
-          this.$router.push("/user");
-          this.student = {
-            firstName: "",
-            lastName: "",
-            class: ""
-          };
+        .post(apiURL, this.lehrer)
+        .then((res) => {
+          console.log(res);
+          this.$router.push("/admin");
         })
         .catch((error) => {
           console.log(error);
