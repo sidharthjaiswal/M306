@@ -1,5 +1,5 @@
 # M306
-M306 Projekt
+A small school project based on a MEVN Stack Web App for our school and educational purposes.
 
 ## Requirements to run this programm:
 - Mongo.exe as a window service: https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/
