@@ -13,3 +13,5 @@ A small school project based on a MEVN Stack Web App for our school and educatio
 ## Run the backend 
 - open its CMD
 - type : "nodemon"
+
+<sup>Author: Sidharth Jaiswal</sup>
