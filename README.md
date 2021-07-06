@@ -14,4 +14,8 @@ A small school project based on a MEVN Stack Web App for our school and educatio
 - open its CMD
 - type : "nodemon"
 
+<sup>Project Manager: Sidharth Jaiswal</sup>  
+<sup>UI-Designer: Albin Zhitiu</sup>  
+<sup>Frontend Developer: Saijivan Maheswaran, Sidharth Jaiswal</sup>  
+<sup>Backend Developer: Sidharth Jaiswal</sup>  
 <sup>Author: Sidharth Jaiswal</sup>
