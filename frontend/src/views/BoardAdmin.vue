@@ -8,7 +8,7 @@ Descripton:  Student Record Management system. It efficiently allows users to pe
              Schüler Datenbank Mangament system. Erlaubt den Nutzer effizient CRUD Operationen durchzuführen.
 
 */
--->
+
 
 
 <template >
@@ -17,7 +17,7 @@ Descripton:  Student Record Management system. It efficiently allows users to pe
       <div class="col-md-12">
         <br>
         <br>
-        <router-link to="/create-teacher" class="btn btn-success">Add Teacher</router-link>
+        <router-link to="/create-teacher" class="btn btn-success">Add User</router-link>
         <br>
         <br>
         <table class="table table-striped">
@@ -30,18 +30,18 @@ Descripton:  Student Record Management system. It efficiently allows users to pe
             </tr>
           </thead>
          <tbody>
-            <tr v-for="teacher in Teachers" :key="teacher._id">
-              <td>{{ teacher.firstName }}</td>
-              <td>{{ teacher.lastName }}</td>
-              <td>{{ teacher.class }}</td>
+            <tr v-for="user in Users" :key="user._id">
+              <td>{{ user.firstName }}</td>
+              <td>{{ user.lastName }}</td>
+              <td>{{ user.class }}</td>
               <td >
                 <router-link
-                  :to="{ name: 'edit-teacher', params: { id: teacher._id } }"
+                  :to="{ name: 'edit-teacher', params: { id: user._id } }"
                   class="btn btn-warning"
                   >Edit
                 </router-link>
                 <button
-                  @click.prevent="deleteTeacher(teacher._id)"
+                  @click.prevent="deleteTeacher(user._id)"
                   class="btn btn-danger"
                 >
                   Delete
@@ -57,7 +57,7 @@ Descripton:  Student Record Management system. It efficiently allows users to pe
       >, Sort Direction:
       <b>{{ sortDesc ? "Descending" : "Ascending" }}</b>
     </div> 
-    <br />-->
+    <br />
   </div>
 </template>
 
@@ -128,4 +128,4 @@ export default {
 .btn-success {
   margin-right: 10px;
 }
-</style>
+</style>*/

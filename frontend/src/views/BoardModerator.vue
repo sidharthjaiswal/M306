@@ -17,6 +17,7 @@ Descripton:  Student Record Management system. It efficiently allows users to pe
       <div class="col-md-12">
         <br>
         <br>
+         <router-link to="/create-teacher" class="btn btn-success" v-if="currentUser.roles.includes('ROLE_ADMIN')">Add Teacher</router-link>
         <br>
         <br>
         <table class="table table-striped">
@@ -25,6 +26,7 @@ Descripton:  Student Record Management system. It efficiently allows users to pe
               <th>First name</th>
               <th>Last name</th>
               <th>Class</th>
+                <th  v-if="currentUser.roles.includes('ROLE_ADMIN')" >Actions</th>
             </tr>
           </thead>
          <tbody>
@@ -32,6 +34,19 @@ Descripton:  Student Record Management system. It efficiently allows users to pe
               <td>{{ teacher.firstName }}</td>
               <td>{{ teacher.lastName }}</td>
               <td>{{ teacher.class }}</td>
+               <td v-if="currentUser.roles.includes('ROLE_ADMIN')">
+                <router-link
+                  :to="{ name: 'edit-teacher', params: { id: teacher._id } }"
+                  class="btn btn-warning"
+                  >Edit
+                </router-link>
+                <button
+                  @click.prevent="deleteTeacher(teacher._id)"
+                  class="btn btn-danger"
+                >
+                  Delete
+                </button>
+              </td>
             </tr>
           </tbody>
         </table>

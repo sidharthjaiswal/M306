@@ -21,7 +21,7 @@ Descripton:  Student Record Management system. It efficiently allows users to pe
           </router-link>
         </li>
         <li v-if="showAdminBoard" class="nav-item">
-          <router-link to="/admin" class="nav-link"> Tabelle von Lehrpersonen</router-link>
+          <router-link to="/admin" class="nav-link"> Tabelle von Benutzern</router-link>
         </li>
         <li v-if="showModeratorBoard" class="nav-item"> 
           <router-link to="/mod" class="nav-link"> Tabelle von Lehrpersonen</router-link>
@@ -81,7 +81,7 @@ export default {
     },
     showModeratorBoard() {
       if (this.currentUser && this.currentUser.roles) {
-        return this.currentUser.roles.includes('ROLE_MODERATOR');
+        return this.currentUser.roles.includes('ROLE_MODERATOR') || this.currentUser.roles.includes('ROLE_ADMIN');
       }
 
       return false;
