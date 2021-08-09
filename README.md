@@ -1,4 +1,4 @@
-# M306
+# School-Data-Base
 A small collaborate project based on a MEVN Stack Web App for educational purposes.
 
 ## Requirements to run this programm:
